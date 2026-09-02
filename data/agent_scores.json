@@ -1,0 +1,42 @@
+[
+  {
+    "agent_name": "news_agent",
+    "trade_count": 2,
+    "correct_count": 0,
+    "brier_score": 1.0,
+    "reputation_weight": 0.0,
+    "updated_at": "2026-09-02T05:17:34.029763Z"
+  },
+  {
+    "agent_name": "fundamental_agent",
+    "trade_count": 2,
+    "correct_count": 0,
+    "brier_score": 1.0,
+    "reputation_weight": 0.0,
+    "updated_at": "2026-09-02T05:17:34.031092Z"
+  },
+  {
+    "agent_name": "probability_agent",
+    "trade_count": 2,
+    "correct_count": 0,
+    "brier_score": 1.0,
+    "reputation_weight": 0.0,
+    "updated_at": "2026-09-02T05:17:34.032555Z"
+  },
+  {
+    "agent_name": "diligence_agent",
+    "trade_count": 2,
+    "correct_count": 0,
+    "brier_score": 1.0,
+    "reputation_weight": 0.0,
+    "updated_at": "2026-09-02T05:17:34.033852Z"
+  },
+  {
+    "agent_name": "risk_agent",
+    "trade_count": 2,
+    "correct_count": 0,
+    "brier_score": 1.0,
+    "reputation_weight": 0.0,
+    "updated_at": "2026-09-02T05:17:34.035045Z"
+  }
+]

@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Environment
+.env
+.env.local
+
+# Node / frontend
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# Data outputs
+data/predictions/*
+data/trades/*
+!data/predictions/.gitkeep
+!data/trades/.gitkeep
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/mcp.json
+.idea/
+
+# Logs
+*.log

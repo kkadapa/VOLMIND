@@ -1,0 +1,16 @@
+{
+  "mcp": {
+    "servers": {
+      "alpaca": {
+        "type": "stdio",
+        "command": "uvx",
+        "args": ["alpaca-mcp-server"],
+        "env": {
+          "ALPACA_API_KEY": "${env:ALPACA_API_KEY}",
+          "ALPACA_SECRET_KEY": "${env:ALPACA_SECRET_KEY}",
+          "ALPACA_PAPER_TRADE": "true"
+        }
+      }
+    }
+  }
+}
