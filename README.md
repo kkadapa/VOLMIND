@@ -227,6 +227,38 @@ seconds per agent. A risk-approved trade is submitted as a real paper order auto
 switch to the **Performance** tab to watch it show up as an open position, and to trigger a
 position-monitor cycle on demand.
 
+## Deployment
+
+The backend is a long-lived process (SSE streaming, an optional in-process scheduler, local
+JSON persistence), so it runs on a real server, not as serverless functions — the frontend is
+what goes on Vercel.
+
+**Backend → Render** (`render.yaml` at the repo root is a ready-to-use Blueprint):
+
+1. [render.com](https://render.com) → **New → Blueprint** → connect the `VOLMIND` GitHub repo.
+2. Render reads `render.yaml` and creates a free web service (`uvicorn app.main:app --app-dir
+   backend`, health check on `/health`). Fill in the secret env vars it prompts for —
+   `ALPACA_API_KEY`, `ALPACA_SECRET_KEY`, and **one** LLM key
+   (`ANTHROPIC_API_KEY` / `FEATHERLESS_API_KEY` / `OPENAI_API_KEY`) — nowhere else; they're
+   marked `sync: false` in the blueprint so they never touch the repo.
+3. Leave `ALLOWED_ORIGINS` blank for now — set it once you have the Vercel URL (step below).
+4. Deploy, then note the resulting URL (`https://volmind-backend-xxxx.onrender.com`).
+
+Free-tier Render disks are ephemeral and the service spins down after idle periods (cold start
+on the next request) — fine for demo/judging traffic, not for production persistence.
+
+**Frontend → Vercel:**
+
+1. [vercel.com/new](https://vercel.com/new) → import the same GitHub repo.
+2. Set **Root Directory** to `frontend` (this is a monorepo — Vercel needs to know where the
+   Next.js app lives).
+3. Add an env var: `NEXT_PUBLIC_API_BASE_URL` = your Render backend URL from above.
+4. Deploy, then note the resulting URL (`https://volmind-xxxx.vercel.app`).
+
+**Close the loop:** back in the Render dashboard, set `ALLOWED_ORIGINS` to that Vercel URL
+(comma-separated if you need more than one, e.g. also `http://localhost:3000`) and let it
+redeploy — the FastAPI CORS middleware only allows origins listed there.
+
 ## Tests
 
 ```bash
